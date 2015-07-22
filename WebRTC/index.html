@@ -1,0 +1,79 @@
+
+<!DOCTYPE HTML>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="language" content="en"/>
+    <link rel="stylesheet" type="text/css"
+          href="/bootstrap/css/bootstrap.min.css">
+    <script src="/bootstrap/js/jquery-1.11.1.js"></script>
+    <script src="/js/latest.js"></script>
+</head>
+<html>
+<body>
+<style>
+    #localVideo {
+        border-radius: 7px;
+        width: 220px;
+    }
+
+    #remotesVideos video {
+        margin: 21px;
+        height: 220px;
+        border-radius: 8px;
+    }
+</style>
+
+<div class="container-fluid">
+<!--侧边导航栏-->
+<div class="col-lg-2 col-xs-2" style="margin-top: 60px;">
+    <br>
+    <br>
+    <!--    </div>-->
+    <button type="button" id="videoStart" class="btn btn-success" data-toggle="tooltip" data-placement="right"
+            title="点击，请允许浏览器开启摄像头...."><font font-size="1">开&nbsp;&nbsp;启&nbsp;&nbsp;视&nbsp;&nbsp;频</font>
+    </button>
+    <br><br>
+        <button type="button" id="videoLeave" class="btn btn-warning" data-toggle="tooltip" data-placement="right"
+                title="真的要离开吗，房主会想你哒...."><font font-size="1">离&nbsp;&nbsp;&nbsp;开</font>
+        </button>
+    </a>
+    <br><br>
+
+    <button type="button" id="videoTest" class="btn btn-info" data-toggle="tooltip" data-placement="right"
+            title="还没想好...."><font font-size="1">什&nbsp;&nbsp;&nbsp;么？？？</font>
+    </button>
+</div>
+<!--侧边导航栏结束-->
+
+
+<script>
+    function request(paras) {
+
+        var url = location.href;
+        var paraString = url.substring(url.indexOf("?") + 1, url.length).split("&");
+        var paraObj = {}
+        for (i = 0; j = paraString[i]; i++) {
+            paraObj[j.substring(0, j.indexOf("=")).toLowerCase()] = j.substring(j.indexOf("=") + 1, j.length);
+        }
+        var returnValue = paraObj[paras.toLowerCase()];
+        if (typeof(returnValue) == "undefined") {
+            return "";
+        } else {
+            return returnValue;
+        }
+    }
+
+    $(function () {
+        $("#videoStart").click(function () {
+            var id = request('id');
+            var webrtc = new SimpleWebRTC({
+                localVideoEl: 'localVideo',
+                remoteVideosEl: 'remotesVideos',
+                autoRequestMedia: true
+            });
+            webrtc.on('readyToCall', function () {
+                webrtc.joinRoom(request("id"));
+            });
+        })
+    })
+</script>

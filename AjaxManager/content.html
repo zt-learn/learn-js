@@ -1,0 +1,181 @@
+<div class="row" style="padding: 50px">
+    <div id="productCode"></div>
+
+    <div class="col-lg-3" style="border: 1px solid #9b9b9b;border-radius: 5px">
+        <h3>商品基本信息</h3>
+
+        <form action="api/interface.php" method="get">
+            <input name="cmd" hidden="hidden" value="updateProduct">
+            <label>价格:</label>
+            <input name="price" id="productPrice"><br><br>
+            <label>数量:</label>
+            <input name="qty" id="productQty"><br><br>
+            <label>商品:</label>
+            <input name="productCode" id="productInfoCode"><br><br>
+            <button type="submit">修改</button>
+        </form>
+    </div>
+
+    <div class="col-lg-3 col-lg-offset-1" style="border: 1px solid #9b9b9b;border-radius: 5px">
+        <div class="panel-heading">
+            <h3>新增计划</h3>
+        </div>
+        <form role="form">
+            <div class="form-group">
+                <label class="control-label">dateTag（节日打折：1开启 0关闭）</label>
+                <select id="dateTag" class="form-control">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                </select><br>
+
+                <label class="control-label">weekTag（每周打折：1开启 0关闭）</label>
+                <select id="weekTag" class="form-control">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                </select><br>
+
+                <label class="control-label">timeTag（时段打折：1开启 0关闭）</label>
+                <select id="timeTag" class="form-control">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                </select><br>
+
+                <label class="control-label">打折开始时间(如果是date,week不需要填写结束时间)</label><br>
+                <input id="startTime" class="form-control"><br>
+                <label class="control-label">打折结束时间</label><br>
+                <input id="endTime" class="form-control">
+                </select><br>
+
+                <label class="control-label">newPrice（减少的价格）</label>
+                <select id="price" class="form-control">
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="30">30</option>
+                    <option value="40">40</option>
+                    <option value="50">50</option>
+                    <option value="60">60</option>
+                    <option value="70">70</option>
+                    <option value="80">80</option>
+                    <option value="90">90</option>
+                    <option value="100">100</option>
+                </select><br>
+
+                <label class="control-label">percent（折扣比例）</label>
+
+                <select id="percent" class="form-control">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select><br>
+
+                <button id="submit">add(增加新的计划)</button>
+            </div>
+        </form>
+    </div>
+
+    <div id="tem">
+    </div>
+
+    <div class="col-lg-4 col-lg-offset-1" style="border: 1px solid #9b9b9b;border-radius: 5px">
+        <div class="panel-heading">
+            <h3>已有计划</h3>
+        </div>
+        <div id="planed">
+
+        </div>
+    </div>
+</div>
+
+<script id="tplContent" type="text/html">
+    <%for(var j=0;j < data.length;j++){%>
+    <div class="col-lg-10 col-lg-offset-1" style="border: 1px solid #9b9b9b;border-radius: 5px">
+        <form action="api/interface.php" method="get">
+            商品code: <input name="productCode" value="<%= productCode %>"><br>
+            计划id： <input name="planId" value="<%= j %>"> <br>
+            请求参数:<input name="cmd" value="delPlan"><br>
+            <table class="table">
+                <% if(data[j].dateTag == 1) {%>
+                <tr>
+                    <td>节日打折开启：</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>减去的价格</td>
+                    <td><%= data[j].date.discount %></td>
+                </tr>
+                <tr>
+                    <td>打折比例</td>
+                    <td><%= data[j].date.percent %></td>
+                </tr>
+                <tr>
+                    <td>打折开始时间</td>
+                    <td><%= data[j].date.startTime %></td>
+                </tr>
+                <% } %>
+
+                <% if(data[j].weekTag == 1) {%>
+                <tr>
+                    <td>每周打折开启：</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>减去的价格</td>
+                    <td><%= data[j].week.price %></td>
+                </tr>
+                <tr>
+                    <td>打折比例</td>
+                    <td><%= data[j].week.percent %></td>
+                </tr>
+                <tr>
+                    <td>打折开始时间</td>
+                    <td><%= data[j].week.startTime %></td>
+                </tr>
+                <% } %>
+
+                <% if(data[j].timeTag == 1) {%>
+                <tr>
+                    <td>时段打折开启：</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>减去的价格</td>
+                    <td><%= data[j].time.discount %></td>
+                </tr>
+                <tr>
+                    <td>打折比例</td>
+                    <td><%= data[j].time.percent %></td>
+                </tr>
+                <tr>
+                    <td>打折开始时间</td>
+                    <td><%= data[j].time.startTime %></td>
+                </tr>
+                <tr>
+                    <td>打折结束时间</td>
+                    <td><%= data[j].time.endTime %></td>
+                </tr>
+                <% } %>
+
+                <tr>
+                    <td>
+                        删除该计划
+                    </td>
+                    <td>
+                        <button type="submit">删除</button>
+                    </td>
+                </tr>
+
+            </table>
+        </form>
+    </div>
+
+    <% } %>
+
+</script>
+

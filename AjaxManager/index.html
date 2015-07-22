@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <script src="js/jquery-1.11.1.js"></script>
+
+    <script src="template/template.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+    <script src="js/jsLoad.js"></script>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2" style="">
+            <ul class="nav nav-pills nav-stacked" id="sidebar">
+            </ul>
+        </div>
+
+        <div class="col-md-10" id="content">
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+
+            <h3>在这里修改</h3><br>
+
+            <h3>各种商品信息</h3><br>
+
+            <h3>添加新任务</h3><br>
+
+            <h3>控制是否开启区域解锁功能</h3><br>
+        </div>
+    </div>
+</div>
+<script id="tplSidebar" type="text/html">
+    <li><h2>MonkeyKing</h2></li>
+    <li><a href="#"></a></li>
+    <li><a href="#"></a></li>
+    <% for(var i=0;i < data.length;i++){%>
+    <li><a href="#" class="shop"><%= data[i].productCode %></a></li>
+    <% } %>
+</script>
+</body>
+</html>
