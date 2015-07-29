@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+    <link rel="stylesheet" type="text/css" href="css/default.css"/>
+    <link rel="stylesheet" type="text/css" href="css/component.css"/>
+</head>
+<body class="cbp-spmenu-push">
+<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
+    <h3>Menu</h3>
+    <a href="#">Celery seakale</a>
+    <a href="#">Dulse daikon</a>
+    <a href="#">Zucchini garlic</a>
+    <a href="#">Catsear azuki bean</a>
+    <a href="#">Dandelion bunya</a>
+    <a href="#">Rutabaga</a>
+</nav>
+<span style="width: 50px;height: 40px" class="fix" id="showLeftPush"></span>
+<script src="js/classie.js"></script>
+<script>
+    var menuLeft = document.getElementById('cbp-spmenu-s1');
+    var showLeftPush = document.getElementById('showLeftPush');
+    var body = document.body;
+
+    showLeftPush.onclick = function () {
+        if (this.className == 'fix' || this.className == 'fix active')
+            this.className = 'fix-r';
+        else
+            this.className = 'fix';
+
+//        classie.toggle(this, 'active');
+        classie.toggle(body, 'cbp-spmenu-push-toright');
+        classie.toggle(menuLeft, 'cbp-spmenu-open');
+//        disableOther('showLeftPush');
+    };
+
+    function disableOther(button) {
+        if (button !== 'showLeftPush') {
+            classie.toggle(showLeftPush, 'disabled');
+        }
+    }
+</script>
+</body>
+</html>
