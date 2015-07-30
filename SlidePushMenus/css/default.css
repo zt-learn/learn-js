@@ -186,6 +186,8 @@ a:hover {
 }
 
 .fix {
+    width: 50px;
+    height: 40px;
     background-image: url("../img/right.png");
     padding: 10px;
     position: absolute;
@@ -194,6 +196,8 @@ a:hover {
 }
 
 .fix-r {
+    width: 50px;
+    height: 40px;
     background-image: url("../img/left.png");
     padding: 10px;
     position: absolute;
