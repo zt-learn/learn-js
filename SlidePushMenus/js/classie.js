@@ -11,7 +11,6 @@
 /*jshint browser: true, strict: true, undef: true */
 
 (function (window) {
-
     'use strict';
 
     function classReg(className) {
@@ -23,9 +22,11 @@
     hasClass = function (elem, c) {
         return elem.classList.contains(c);
     };
+
     addClass = function (elem, c) {
         elem.classList.add(c);
     };
+
     removeClass = function (elem, c) {
         elem.classList.remove(c);
     };
@@ -42,5 +43,4 @@
         removeClass: removeClass,
         toggle: toggleClass
     };
-
 })(window);

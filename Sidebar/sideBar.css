@@ -1,0 +1,36 @@
+.cbp-spmenu {
+    background: #47a3da;
+    position: fixed;
+}
+
+.cbp-spmenu-vertical {
+    width: 240px;
+    height: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.content {
+    left: 240px;
+    position: absolute;
+}
+
+.sideBar {
+    width: 240px;
+    position: fixed;
+    height: 100%;
+    background-color: #333333;
+}
+
+.sideBar a {
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+    display: block;
+    background-color: #333333;
+    border-bottom: 1px solid black;
+}
+
+.sideBar a:hover {
+    background-color: #37424F;
+}
