@@ -1,0 +1,28 @@
+<div style="height:500px;border:1px solid blue;overflow:auto">
+  <div style="height:800px;border:1px solid red;" onclick="test()" onmouse onmouseover="test4()" onmouseout="test5()">
+    sdfsd
+  </div>
+</div>
+
+<script>
+  function test() {
+    console.log('test:', window.event);
+  }
+
+  function test2() {
+    console.log('test2:', window.event);
+  }
+
+  function test3() {
+    console.log('test3:', window.event);
+  }
+
+  function test4() {
+    console.log('test4:', window.event);
+  }
+
+  function test5() {
+    console.log('test5:', window.event);
+  }
+  // window.event.mousemove;
+</script>
